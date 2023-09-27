@@ -3,6 +3,11 @@
 #include <string>
 
 
+#ifndef GL_CLAMP_TO_EDGE 
+#define GL_CLAMP_TO_EDGE 0x812F
+#endif // !GL_CLAMP_TO_EDGE 
+
+
 #define END_FLAG 0
 #define CONTINUE_FLAG 1
 

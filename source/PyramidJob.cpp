@@ -1,6 +1,5 @@
 #include "PyramidJob.h"
-
-#define GL_CLAMP_TO_EDGE 0x812F
+#include "ResourceHolder.h"
 
 
 static GLuint LoadTexture(const std::string& name_) {

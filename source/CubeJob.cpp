@@ -4,15 +4,14 @@
 /////////////////Cube///////////////////////
 Cube::Cube()
     : Figure(sf::Vector3f(0.f, 0.f, -100.f)) {
-    m_texture = load_texture("saul.png");
-
-
-    m_squares.emplace_back(m_size, sf::Vector3f(0, 0, m_size), sf::Vector3f(), "saul.png");         //front
-    m_squares.emplace_back(m_size, sf::Vector3f(0, 0, -m_size), sf::Vector3f(), "saul.png");        //back
-    m_squares.emplace_back(m_size, sf::Vector3f(-m_size, 0, 0), sf::Vector3f(0, 90, 0), "saul.png");//left
-    m_squares.emplace_back(m_size, sf::Vector3f(m_size, 0, 0), sf::Vector3f(0, 90, 0), "saul.png"); //right
-    m_squares.emplace_back(m_size, sf::Vector3f(0, -m_size, 0), sf::Vector3f(90, 0, 0), "saul.png");//bottom
-    m_squares.emplace_back(m_size, sf::Vector3f(0, m_size, 0), sf::Vector3f(90, 0, 0), "saul.png"); //top
+    set_texture("sual.png");
+    //m_texture = log_gl_texture(*ResourceHolder::Instance().getSfImage("sual.png"));
+    m_squares.emplace_back(m_size, sf::Vector3f(0, 0, m_size), sf::Vector3f(), "mike.png");         //front
+    m_squares.emplace_back(m_size, sf::Vector3f(0, 0, -m_size), sf::Vector3f(), "mike.png");        //back
+    m_squares.emplace_back(m_size, sf::Vector3f(-m_size, 0, 0), sf::Vector3f(0, 90, 0), "mike.png");//left
+    m_squares.emplace_back(m_size, sf::Vector3f(m_size, 0, 0), sf::Vector3f(0, 90, 0), "mike.png"); //right
+    m_squares.emplace_back(m_size, sf::Vector3f(0, -m_size, 0), sf::Vector3f(90, 0, 0), "mike.png");//bottom
+    m_squares.emplace_back(m_size, sf::Vector3f(0, m_size, 0), sf::Vector3f(90, 0, 0), "mike.png"); //top
 }
 
 void Cube::draw(sf::RenderWindow& window_, const sf::Vector3f& rotation_, float zoom_) {
