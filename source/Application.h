@@ -1,17 +1,19 @@
 #pragma once
 
-#include "MenuJob.h"
-#include <iostream>
+#include "JobManager.h"
 
 
-class Application : public IJobManager {
+class Application : public JobManager {
 public:
-    Application();
-    ~Application();
+	~Application();
 
-    int run();
+	static Application& app();
+	int run();
 private:
-    int job_executer();
+	int job_executer();
+	void init_application();
 
-    void init_application();
+	Application();
+	Application(const Application& other_) = delete;
+	Application& operator=(const Application&) = delete;
 };

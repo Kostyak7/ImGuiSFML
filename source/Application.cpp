@@ -1,18 +1,33 @@
 #include "Application.h"
+#include "DevMenuJob.h"
+#include "config.h"
+#include "imgui.h"
+#include "imgui-sfml.h"
+#include <iostream>
 
 
-Application::Application() : IJobManager() {
-    init_application();
+Application::Application() {
+	init_application();
 }
 
 Application::~Application() {
+    ImGui::SFML::Shutdown(WindowHandler::window());
     ImGui::SFML::Shutdown();
+}
+
+
+Application& Application::app() {
+	static Application app;
+	return app;
 }
 
 int Application::run() {
     try {
         while (job_executer()) {
-            apply_deferred_job();
+            if (WindowHandler::Instance().is_to_close()) {
+                WindowHandler::window().close();
+                break;
+            }
         }
     }
     catch (...) {
@@ -23,15 +38,15 @@ int Application::run() {
 }
 
 int Application::job_executer() {
-    for (auto it = m_job_list.begin(); it != m_job_list.end();) {
-        if ((*it)->do_step() == END_FLAG) {
-            it = m_job_list.erase(it);
+    for (auto it = m_jobs.begin(); it != m_jobs.end();) {
+        if (it->second->do_step() == END_FLAG) {
+            it = m_jobs.erase(it);
         }
         else ++it;
     }
-    return (m_job_list.empty()) ? END_FLAG : CONTINUE_FLAG;
+    return (m_jobs.empty()) ? END_FLAG : CONTINUE_FLAG;
 }
 
 void Application::init_application() {
-    m_job_list.push_back(std::make_shared<MenuJob>(this));
+    add_job(std::make_shared<DevMenuJob>(), 100);
 }
