@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "DevMenuJob.h"
+#include "SceneJob.h"
 #include "config.h"
 #include "imgui.h"
 #include "imgui-sfml.h"
@@ -48,5 +49,8 @@ int Application::job_executer() {
 }
 
 void Application::init_application() {
+    WindowHandler::window().setActive();
+    gladLoadGL();
+    
     add_job(std::make_shared<DevMenuJob>(), 100);
 }

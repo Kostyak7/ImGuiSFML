@@ -1,4 +1,6 @@
 #include "DevMenuJob.h"
+#include "SceneJob.h"
+#include "Application.h"
 #include "imgui.h"
 #include "imgui-sfml.h"
 #include "config.h"
@@ -20,7 +22,8 @@ int DevMenuJob::update() {
     ImGui::Begin("Menu");
     
     if (ImGui::Button("Show scene_1")) {
-        //console.activate();
+        Application::app().add_job(std::make_shared<SceneJob>());
+        returning_flag = END_FLAG;
     }
 
     if (ImGui::Button("Console")) {
@@ -32,7 +35,6 @@ int DevMenuJob::update() {
         returning_flag = END_FLAG;
     }
     ImGui::End();
-
 	return returning_flag;
 }
 

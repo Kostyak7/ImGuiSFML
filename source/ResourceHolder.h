@@ -1,6 +1,7 @@
 #pragma once
 
 #include "config.h"
+#include <gl/freeglut.h>
 #include <unordered_map>
 
 

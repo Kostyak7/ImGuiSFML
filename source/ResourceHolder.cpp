@@ -1,4 +1,5 @@
 #include "ResourceHolder.h"
+#include <GL/GLU.h>
 
 
 ResourceHolder& ResourceHolder::Instance() {

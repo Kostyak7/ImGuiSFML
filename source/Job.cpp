@@ -18,10 +18,13 @@ int Job::do_step() {
 int WindowJob::do_step() {
     ImGui::SFML::SetCurrentWindow(WindowHandler::window());
 
-    if (
-        process_events() == END_FLAG ||
-        update() == END_FLAG ||
-        render() == END_FLAG
+    int process_events_res = process_events();
+    int update_res = update();
+    int render_res = render();
+
+    if (process_events_res == END_FLAG ||
+        update_res == END_FLAG ||
+        render_res == END_FLAG
         ) {
         return END_FLAG;
     }
@@ -52,7 +55,9 @@ int WindowJob::update() {
 
 int WindowJob::render() {
     WindowHandler::window().clear(DEFAULT_BACKGROUND_COLOR);
+    WindowHandler::window().pushGLStates();
     ImGui::SFML::Render(WindowHandler::window());
+    WindowHandler::window().popGLStates();
     WindowHandler::window().display();
     return CONTINUE_FLAG;
 }
